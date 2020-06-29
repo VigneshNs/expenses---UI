@@ -1,0 +1,45 @@
+<form [formGroup]="signInForm" novalidate>
+    <div class="container">
+      <div class="row">
+            
+        <div class="col-md-12 mt-5">
+            <h2 class="text-center">Welcome </h2>
+                <div class="col-md-12 col-sm-12 col-12 mt-3 pt-2 text-center">
+                  <mat-form-field >
+                    <input matInput placeholder="Email" formControlName="emailId" required>
+                    <mat-icon matSuffix mat-icon-button aria-label="Email-Id">email</mat-icon>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12 col-12 text-center">
+                  <mat-form-field>
+                    <input matInput placeholder="Password"  formControlName="password"
+                    [type]="showPassword ? 'text': 'password'"   required>
+                    <mat-icon matSuffix mat-icon-button aria-label="Password" (click)="checkPassword()" >remove_red_eye
+                    </mat-icon>
+                   
+                  </mat-form-field>
+                </div>
+               
+                <div class="col-md-12 col-12 text-center">
+                  <div *ngIf="pwdError === true">
+                    <p style="color: red">Invalid Account</p>
+                  </div> 
+                <!-- (click)="!signInForm.invalid && onSubmit()" -->
+                  <button class="registerButton "              
+              mat-raised-button color="primary" type="submit" (click)="!signInForm.invalid && onSubmit()">Login</button>
+                </div>
+              
+        
+               
+                <div class="col-md-12 col-6 text-center">
+                  <div class="pt-4">Dont have an account?<a class="signupLink" (click)="signup()"> Sign Up</a></div>
+                </div>
+
+              
+            
+          </div>
+      </div>
+      
+    </div>
+  </form>
+

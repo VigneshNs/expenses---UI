@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 col-sm-6">
+            <h3 class="title text-center">WELCOME</h3>
+         
+         
+            <div class="our-team">
+                <span >
+                    <button class="ml-5" mat-mini-fab color="primary" (click)="showImageAdds()" *ngIf="customerDetails?.customerImageName"
+                   aria-label="Example icon button with a menu icon">
+                   <mat-icon>edit</mat-icon>
+                 </button>
+               </span>
+                <div class="pic" *ngIf="customerDetails?.customerImageName">
+                 
+                    
+                    <img  [src]="imageUrl + customerDetails?._id + '/' + customerDetails?.customerImageName" style="width: 280px; height: 245px;" />
+
+                </div>
+                <!-- {{!showNoAdd}} -->
+                <div class="col-md-6 text-center m-auto pb-3" *ngIf="!showImageAdd">
+                    <input type="file" name="file" class="btn btnPink btn-block" id="file"
+                    (change)="handleFileInput($event.target.files)">
+                    <button  mat-raised-button  color="primary" (click)="uploadSingleImage()">save</button>
+                  </div>
+                <div class="team-content">
+              
+                        <div class="col-md-12 col-sm-12 col-12 ">
+                    <mat-form-field>
+                      <mat-label>Mobile Number</mat-label>
+                      <input matInput placeholder="Mobile Number" maxlength="10" #num [value]="customerDetails?.mobileNumber || null">
+                        <mat-icon matSuffix mat-icon-button aria-label="Mobile Number">phone</mat-icon>
+                    </mat-form-field>
+                   
+                    <button class="ml-3" mat-mini-fab color="primary" *ngIf="customerDetails?.mobileNumber"  (click)="showNumberAdd()"
+                        aria-label="Example icon button with a menu icon">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <div *ngIf="showNoError" class="text-center">
+                        <p style="color: red;">Mobile Number should be 10 digit</p>
+                    </div>
+
+                    <br>
+                    <div *ngIf="!showNoAdd">
+                        <button  mat-raised-button  color="primary" (click)="addNumber(num)">Save </button>
+
+                    </div>
+                  </div> 
+                
+                </div>
+            </div>
+        </div>
+ 
+    </div>
+</div>

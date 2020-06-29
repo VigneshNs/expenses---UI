@@ -1,0 +1,160 @@
+<div class="container mt-5">
+    <mat-card>
+        
+<form [formGroup]="expenceForm" novalidate (ngSubmit)="save(expenceForm.value, expenceForm.valid,$event)">
+
+    <mat-card formArrayName="expenceDetails">
+        <button type="button" mat-raised-button color="primary" (click)="viewExpence()">
+            <mat-icon>eye</mat-icon>
+         View Expence
+        </button>
+       
+        <div *ngFor="let unit of expenceForm.get('expenceDetails')['controls']; let i=index">
+
+            <div [formGroupName]="i">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-3">
+                        <mat-form-field >
+                            <input matInput placeholder="expence name" formControlName="expenceName" required>
+                            <mat-error *ngIf="unit.controls.expenceName.invalid">
+                                expence name is required.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                          
+                    <mat-form-field >
+                        <input matInput placeholder="Amount" type="number" formControlName="amount" required>
+                    </mat-form-field>
+                    </div>
+                    <div class="col-md-2 text-center"  *ngIf="expenceForm.get('expenceDetails')['controls'].length > 1">
+                        <button style="outline: none;"  type="button" mat-mini-fab color="warn" 
+                        (click)="removeUnit(i)">
+                        <mat-icon>delete forever</mat-icon>
+                    </button>
+                    </div>
+                    <!-- <div class="col-md-"></div> -->
+
+
+                  
+                   
+                </div>
+            </div>
+        </div>
+        <!-- <mat-divider></mat-divider> -->
+        <mat-card-actions>
+            <button type="button" mat-raised-button color="primary" (click)="addUnit()">
+                <mat-icon>add box</mat-icon>
+             Add new Expence
+            </button>
+            <button type="button" color="warn" mat-raised-button (click)="clearAllUnits()">
+                <mat-icon>remove_circle</mat-icon>
+                Clear all
+            </button>
+    
+        </mat-card-actions>
+    </mat-card>
+    <mat-divider></mat-divider>
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="expenceForm.invalid">Submit</button>
+    </mat-card-actions>
+</form>
+    </mat-card>
+</div>
+
+
+
+
+
+
+
+<!-- <mat-card>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input #date  matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)= "submitDate(date.value)" >Submit</button>
+</mat-card> -->
+<!-- <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="example-container">
+    Form
+      <mat-form-field>
+        <input matInput [(ngModel)]="date" [matDatepicker]="picker" name="date" placeholder="Choose a date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+   </div>
+  
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form> -->
+<!-- 
+
+  <mat-form-field appearance="fill">
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input #start matStartDate placeholder="Start date">
+      <input #end matEndDate placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+ -->
+
+      <!-- <button mat-raised-button color="primary" (click)= "submitSelectedDate(start.value,end.value)" >Submit</button> -->
+
+
+
+
+
+
+<!-- 
+
+<form [formGroup]="expenceForm" novalidate (ngSubmit)="save(expenceForm.value, expenceForm.valid,$event)">
+
+    <mat-card formArrayName="expenceDetails">
+        <mat-card-title>Expence sheet</mat-card-title>
+        <mat-divider></mat-divider>
+
+        <div *ngFor="let unit of expenceForm.controls.expenceDetails.controls; let i=index">
+
+            <div [formGroupName]="i">
+                <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3.5%" fxLayoutAlign="center">
+                    <mat-form-field fxFlex="30%">
+                        <input matInput placeholder="expence name" formControlName="expenceName" required>
+                        <mat-error *ngIf="unit.controls.expenceName.invalid">
+                            expence name is required.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex="10%" fxFlex.xs="20">
+                        <input matInput placeholder="Amount" type="number" formControlName="amount" required>
+                    </mat-form-field>
+
+                    <div fxLayout.xs="row">
+                        <button type="button" mat-mini-fab color="warn" fxFlex="nogrow"
+                            *ngIf="expenceForm.controls.expenceDetails.controls.length > 1" (click)="removeUnit(i)">
+                            <mat-icon>delete forever</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <button type="button" mat-raised-button color="primary" (click)="addUnit()">
+                <mat-icon>add box</mat-icon>
+                Add new Expence
+            </button>
+            <button type="button" color="warn" mat-raised-button (click)="clearAllUnits()">
+                <mat-icon>remove_circle</mat-icon>
+                Clear all
+            </button>
+    
+        </mat-card-actions>
+    </mat-card>
+    <mat-card-actions><button mat-raised-button color="primary" [disabled]="expenceForm.invalid">Submit</button></mat-card-actions>
+</form> -->

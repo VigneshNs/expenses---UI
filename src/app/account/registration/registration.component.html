@@ -1,0 +1,61 @@
+<form [formGroup]="regForm" novalidate>
+    <div class="container-fluid">
+      <div class="row">
+            <div class="col-md-12 mt-5">
+            <h2 class="text-center">Welcome to SignUp </h2>
+            
+          
+                  <div class="col-md-12 col-sm-12 col-12 mt-3 pt-2 text-center">
+                    <mat-form-field>
+                      <mat-label>Email</mat-label>
+                      <input matInput placeholder="Email" formControlName="emailId" required>
+                      <mat-icon matSuffix mat-icon-button aria-label="Email-Id">email</mat-icon>
+                      <mat-error *ngIf="regForm.controls['emailId'].errors?.required">
+                        Email-Id is
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                <!--   <div class="col-md-12 col-sm-12 col-12 ">
+                    <mat-form-field>
+                      <mat-label>Mobile Number</mat-label>
+                      <input matInput placeholder="Mobile Number" maxlength="10" formControlName="mobileNumber" required>
+                        <mat-icon matSuffix mat-icon-button aria-label="Mobile Number">phone</mat-icon>
+                    </mat-form-field>
+                  </div> -->
+                  <div class="col-md-12 col-12 text-center">
+                    <mat-form-field>
+                      <mat-label>Password</mat-label>
+                      <input matInput placeholder="Password"   formControlName="password"
+                      [type]="showPassword ? 'text': 'password'"   required>
+                      <mat-icon matSuffix mat-icon-button aria-label="Password" (click)="checkPassword()" >remove_red_eye
+                      </mat-icon>
+                      <mat-error *ngIf="regForm.controls['password'].errors?.required">
+                        Password is
+                        <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-12 col-12 text-center" *ngIf="holder?.result">
+                    <p style="color: red;">{{holder?.result}}</p>
+                     
+                    </div>
+                  <div class="col-md-12 col-12 text-center">
+                  
+                    <button class="registerButton" 
+                    mat-raised-button  color="primary" type="submit" (click)="!regForm.invalid && onRegister()" >Sign Up</button>
+                  </div>
+                
+                  
+                  <div class="col-md-12 col-12 text-center">
+                    <div class="pt-4">Already have an account?<a class="signupLink" (click)="login()"> Login</a></div>
+                  </div>
+                  <div class="col-md-6 "></div>
+  
+                
+              
+          </div>
+      </div>
+      
+    </div>
+  </form>
